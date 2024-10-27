@@ -136,4 +136,32 @@ class GetContentLocalUseCaseTest {
 
         confirmVerified(store)
     }
+
+    private fun expect(
+        sut: GetContentLocalUseCase,
+        expectResult: LoadResult,
+        action: () -> Unit,
+        retrieveExactly: Int = -1
+    ) = runBlocking {
+        action()
+
+        sut.load().test {
+            when(val receivedResult = awaitItem()) {
+                is LoadCacheResult.Failure -> {
+                    assertEquals(expectResult, receivedResult)
+                }
+                is LoadCacheResult.Success -> {
+                    assertEquals(expectResult, receivedResult)
+                }
+            }
+
+            awaitComplete()
+        }
+
+        verify(exactly = retrieveExactly) {
+            store.retrieve()
+        }
+
+        confirmVerified(store)
+    }
 }

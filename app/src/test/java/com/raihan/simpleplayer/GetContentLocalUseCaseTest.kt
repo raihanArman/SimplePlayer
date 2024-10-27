@@ -21,7 +21,7 @@ import java.util.Date
 
 sealed class RetrieveCachedResult {
     data object Empty: RetrieveCachedResult()
-    data class Found(val cryptoFeed: List<LocalContentModel>): RetrieveCachedResult()
+    data class Found(val data: List<LocalContentModel>): RetrieveCachedResult()
     data class Failure(val exception: Exception): RetrieveCachedResult()
 }
 
@@ -50,10 +50,22 @@ class GetContentLocalUseCase(
                 is RetrieveCachedResult.Failure -> {
                     emit(LoadCacheResult.Failure(result.exception))
                 }
-                is RetrieveCachedResult.Found -> {}
+                is RetrieveCachedResult.Found -> {
+                    emit(LoadCacheResult.Success(result.data.map {
+                        it.toContentModel()
+                    }))
+                }
             }
         }
     }
+
+    private fun LocalContentModel.toContentModel() = ContentModel(
+        id = id,
+        title = title,
+        description = description,
+        videoUrl = videoUrl,
+        adsUrl = adsUrl
+    )
 }
 
 class GetContentLocalUseCaseTest {
@@ -118,6 +130,40 @@ class GetContentLocalUseCaseTest {
                 every {
                     store.retrieve()
                 } returns flowOf(RetrieveCachedResult.Empty)
+            },
+            retrieveExactly = 1
+        )
+    }
+
+    @Test
+    fun testLoadDeliversWithDataOnSuccess() = runBlocking {
+        val content = listOf(
+            ContentModel(
+                id = 1,
+                title = "title",
+                description = "description",
+                videoUrl = "videoUrl",
+                adsUrl = "adsUrl"
+            )
+        )
+
+        val localContent = listOf(
+            LocalContentModel(
+                id = 1,
+                title = "title",
+                description = "description",
+                videoUrl = "videoUrl",
+                adsUrl = "adsUrl"
+            )
+        )
+
+        expect(
+            sut = sut,
+            expectResult = LoadCacheResult.Success(content),
+            action = {
+                every {
+                    store.retrieve()
+                } returns flowOf(RetrieveCachedResult.Found(localContent))
             },
             retrieveExactly = 1
         )

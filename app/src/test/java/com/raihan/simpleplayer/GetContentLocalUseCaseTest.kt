@@ -11,20 +11,36 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
+import java.util.Date
 
 /**
  * @author Raihan Arman
  * @date 27/10/24
  */
 
-interface ContentStore {
-    fun retrieve(): Flow<List<LocalContentModel>>
+sealed class RetrieveCachedResult {
+    data object Empty: RetrieveCachedResult()
+    data class Found(val cryptoFeed: List<LocalContentModel>): RetrieveCachedResult()
+    data class Failure(val exception: Exception): RetrieveCachedResult()
 }
+
+typealias RetrievalResult = RetrieveCachedResult
+
+interface ContentStore {
+    fun retrieve(): Flow<RetrievalResult>
+}
+
+sealed class LoadCacheResult {
+    data class Success(val data: List<ContentModel>): LoadCacheResult()
+    data class Failure(val exception: Exception): LoadCacheResult()
+}
+
+typealias LoadResult = LoadCacheResult
 
 class GetContentLocalUseCase(
     private val store: ContentStore
 ) {
-    fun load(): Flow<List<ContentModel>> = flow {
+    fun load(): Flow<LoadResult> = flow {
         store.retrieve().collect {
 
         }

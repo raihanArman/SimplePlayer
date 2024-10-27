@@ -3,6 +3,7 @@ package com.raihan.simpleplayer
 import app.cash.turbine.test
 import com.raihan.simpleplayer.cache.ContentStore
 import com.raihan.simpleplayer.cache.LocalContentModel
+import com.raihan.simpleplayer.cache.SaveContentLocalUseCase
 import com.raihan.simpleplayer.cache.insertResult
 import com.raihan.simpleplayer.domain.ContentModel
 import com.raihan.simpleplayer.utils.RetrievalResult

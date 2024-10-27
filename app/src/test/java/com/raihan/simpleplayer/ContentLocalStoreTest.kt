@@ -85,4 +85,23 @@ class ContentLocalStoreTest {
 
         confirmVerified(dao)
     }
+
+    @Test
+    fun testRetrieveOnDataIsNotExists() = runBlocking {
+        coEvery {
+            dao.load()
+        } returns emptyList()
+
+        sut.retrieve().test {
+            val result = awaitItem()
+            assert(result is RetrieveCachedResult.Empty)
+            awaitComplete()
+        }
+
+        coVerify {
+            dao.load()
+        }
+
+        confirmVerified(dao)
+    }
 }

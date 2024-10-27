@@ -44,7 +44,9 @@ class GetContentLocalUseCase(
     fun load(): Flow<LoadResult> = flow {
         store.retrieve().collect { result ->
             when (result) {
-                RetrieveCachedResult.Empty -> {}
+                RetrieveCachedResult.Empty -> {
+                    emit(LoadCacheResult.Success(emptyList()))
+                }
                 is RetrieveCachedResult.Failure -> {
                     emit(LoadCacheResult.Failure(result.exception))
                 }
@@ -113,4 +115,25 @@ class GetContentLocalUseCaseTest {
         confirmVerified(store)
     }
 
+    @Test
+    fun testLoadDeliversEmptyDataOnEmptyCache() = runBlocking {
+        every {
+            store.retrieve()
+        } returns flowOf(RetrieveCachedResult.Empty)
+
+        sut.load().test {
+            val result = awaitItem()
+            if (result is LoadCacheResult.Success) {
+                assertEquals(LoadCacheResult.Success(emptyList()), result)
+            }
+
+            awaitComplete()
+        }
+
+        verify(exactly = 1) {
+            store.retrieve()
+        }
+
+        confirmVerified(store)
+    }
 }

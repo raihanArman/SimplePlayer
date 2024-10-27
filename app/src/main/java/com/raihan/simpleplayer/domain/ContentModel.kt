@@ -1,4 +1,4 @@
-package com.raihan.simpleplayer
+package com.raihan.simpleplayer.domain
 
 /**
  * @author Raihan Arman

@@ -1,80 +1,35 @@
 package com.raihan.simpleplayer
 
 import app.cash.turbine.test
+import com.raihan.simpleplayer.cache.ContentStore
+import com.raihan.simpleplayer.cache.LoadContentLocalUseCase
+import com.raihan.simpleplayer.cache.LocalContentModel
+import com.raihan.simpleplayer.domain.ContentModel
+import com.raihan.simpleplayer.utils.LoadCacheResult
+import com.raihan.simpleplayer.utils.LoadResult
+import com.raihan.simpleplayer.utils.RetrieveCachedResult
 import io.mockk.confirmVerified
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import java.util.Date
 
 /**
  * @author Raihan Arman
  * @date 27/10/24
  */
 
-sealed class RetrieveCachedResult {
-    data object Empty: RetrieveCachedResult()
-    data class Found(val data: List<LocalContentModel>): RetrieveCachedResult()
-    data class Failure(val exception: Exception): RetrieveCachedResult()
-}
-
-typealias RetrievalResult = RetrieveCachedResult
-
-interface ContentStore {
-    fun retrieve(): Flow<RetrievalResult>
-}
-
-sealed class LoadCacheResult {
-    data class Success(val data: List<ContentModel>): LoadCacheResult()
-    data class Failure(val exception: Exception): LoadCacheResult()
-}
-
-typealias LoadResult = LoadCacheResult
-
-class GetContentLocalUseCase(
-    private val store: ContentStore
-) {
-    fun load(): Flow<LoadResult> = flow {
-        store.retrieve().collect { result ->
-            when (result) {
-                RetrieveCachedResult.Empty -> {
-                    emit(LoadCacheResult.Success(emptyList()))
-                }
-                is RetrieveCachedResult.Failure -> {
-                    emit(LoadCacheResult.Failure(result.exception))
-                }
-                is RetrieveCachedResult.Found -> {
-                    emit(LoadCacheResult.Success(result.data.map {
-                        it.toContentModel()
-                    }))
-                }
-            }
-        }
-    }
-
-    private fun LocalContentModel.toContentModel() = ContentModel(
-        id = id,
-        title = title,
-        description = description,
-        videoUrl = videoUrl,
-        adsUrl = adsUrl
-    )
-}
-
-class GetContentLocalUseCaseTest {
+class LoadContentLocalUseCaseTest {
     private val store = mockk<ContentStore>()
-    private lateinit var sut: GetContentLocalUseCase
+    private lateinit var sut: LoadContentLocalUseCase
 
     @Before
     fun setup () {
-        sut = GetContentLocalUseCase(store)
+        sut = LoadContentLocalUseCase(store)
     }
 
     @Test
@@ -170,7 +125,7 @@ class GetContentLocalUseCaseTest {
     }
 
     private fun expect(
-        sut: GetContentLocalUseCase,
+        sut: LoadContentLocalUseCase,
         expectResult: LoadResult,
         action: () -> Unit,
         retrieveExactly: Int = -1

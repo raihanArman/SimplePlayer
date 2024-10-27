@@ -8,5 +8,5 @@ typealias insertResult = Exception?
 interface ContentStore {
     fun retrieve(): Flow<RetrievalResult>
     fun insert(data: List<LocalContentModel>): Flow<insertResult>
-    fun isExists(): Boolean
+    fun isExists(): Flow<Boolean>
 }

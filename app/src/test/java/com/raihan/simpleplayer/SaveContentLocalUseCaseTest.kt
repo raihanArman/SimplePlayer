@@ -70,7 +70,7 @@ class SaveContentLocalUseCaseTest {
     ) = runBlocking {
         every {
             store.isExists()
-        } returns isExists
+        } returns flowOf(isExists)
 
         every {
             store.insert(localContent)

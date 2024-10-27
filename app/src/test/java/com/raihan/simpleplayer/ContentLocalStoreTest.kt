@@ -54,7 +54,10 @@ class ContentLocalStore(
         }
     }
 
-    fun isExists(): Boolean = false
+    fun isExists(): Flow<Boolean> = flow {
+        val isNotEmpty = dao.isTableNotEmpty()
+        emit(isNotEmpty)
+    }
 
     private fun LocalContentEntity.toLocalContentModel() = LocalContentModel(
         id = id,
@@ -157,6 +160,25 @@ class ContentLocalStoreTest {
 
         coVerify {
             dao.insert(entity)
+        }
+
+        confirmVerified(dao)
+    }
+
+    @Test
+    fun testTableIsNotEmpty() = runBlocking {
+        coEvery {
+            dao.isTableNotEmpty()
+        } returns true
+
+        sut.isExists().test {
+            val result = awaitItem()
+            assertEquals(true, result)
+            awaitComplete()
+        }
+
+        coVerify {
+            dao.isTableNotEmpty()
         }
 
         confirmVerified(dao)

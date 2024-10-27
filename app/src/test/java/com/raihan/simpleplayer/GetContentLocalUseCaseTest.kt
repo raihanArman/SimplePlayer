@@ -95,46 +95,32 @@ class GetContentLocalUseCaseTest {
     fun testLoadFailsOnRetrievalError() = runBlocking {
         val retrievalError = Exception()
 
-        every {
-            store.retrieve()
-        } returns flowOf(RetrieveCachedResult.Failure(retrievalError))
+        expect(
+            sut = sut,
+            expectResult = LoadCacheResult.Failure(retrievalError),
+            action = {
+                every {
+                    store.retrieve()
+                } returns flowOf(RetrieveCachedResult.Failure(retrievalError))
 
-        sut.load().test {
-            val result = awaitItem()
-            if (result is LoadCacheResult.Failure) {
-                assertEquals(LoadCacheResult.Failure(retrievalError), result)
-            }
 
-            awaitComplete()
-        }
-
-        verify(exactly = 1) {
-            store.retrieve()
-        }
-
-        confirmVerified(store)
+            },
+            retrieveExactly = 1,
+        )
     }
 
     @Test
     fun testLoadDeliversEmptyDataOnEmptyCache() = runBlocking {
-        every {
-            store.retrieve()
-        } returns flowOf(RetrieveCachedResult.Empty)
-
-        sut.load().test {
-            val result = awaitItem()
-            if (result is LoadCacheResult.Success) {
-                assertEquals(LoadCacheResult.Success(emptyList()), result)
-            }
-
-            awaitComplete()
-        }
-
-        verify(exactly = 1) {
-            store.retrieve()
-        }
-
-        confirmVerified(store)
+        expect(
+            sut = sut,
+            expectResult = LoadCacheResult.Success(emptyList()),
+            action = {
+                every {
+                    store.retrieve()
+                } returns flowOf(RetrieveCachedResult.Empty)
+            },
+            retrieveExactly = 1
+        )
     }
 
     private fun expect(

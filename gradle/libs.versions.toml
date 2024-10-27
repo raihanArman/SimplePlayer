@@ -20,6 +20,11 @@ room = "2.6.1"
 appcompat = "1.7.0"
 material = "1.12.0"
 
+# Koin
+koin = "3.4.3"
+koin-viewmodel = "2.1.6"
+koin-androidx-compose = "3.4.6"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -51,6 +56,21 @@ room = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
+# Koin
+koin_android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin_core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin_viewmodel = { module = "org.koin:koin-android-viewmodel", version.ref = "koin-viewmodel"}
+koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-androidx-compose" }
+
+[bundles]
+koin_compose = [
+    "koin-compose"
+]
+koin = [
+    "koin_android",
+    "koin_core",
+    "koin_viewmodel"
+]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

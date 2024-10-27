@@ -52,6 +52,9 @@ dependencies {
 
     implementation(libs.room)
 
+    implementation(libs.bundles.koin.compose)
+    implementation(libs.bundles.koin)
+
     testImplementation(libs.mockk.android)
     testImplementation(libs.mockk.agent)
     testImplementation(libs.turbine)

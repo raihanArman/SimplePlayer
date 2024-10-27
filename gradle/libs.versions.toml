@@ -52,7 +52,9 @@ turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 kotlin-test-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
 # Room Database
-room = { module = "androidx.room:room-runtime", version.ref = "room" }
+room = { module = "androidx.room:room-ktx", version.ref = "room" }
+room-kapt = { module = "androidx.room:room-compiler", version.ref = "room" }
+
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
@@ -69,7 +71,7 @@ koin_compose = [
 koin = [
     "koin_android",
     "koin_core",
-    "koin_viewmodel"
+#    "koin_viewmodel"
 ]
 
 [plugins]

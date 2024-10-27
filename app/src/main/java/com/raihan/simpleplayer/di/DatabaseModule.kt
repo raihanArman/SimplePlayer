@@ -1,6 +1,6 @@
 package com.raihan.simpleplayer.di
 
-import com.raihan.simpleplayer.framework.AppDatabase
+import com.raihan.simpleplayer.cache_infra.AppDatabase
 import com.raihan.simpleplayer.utils.DatabaseUtils
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module

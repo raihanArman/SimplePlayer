@@ -4,6 +4,7 @@ import android.app.Application
 import com.raihan.simpleplayer.di.cacheModule
 import com.raihan.simpleplayer.di.databaseModule
 import com.raihan.simpleplayer.di.domainModule
+import com.raihan.simpleplayer.presentation.splash.splashModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
@@ -22,6 +23,7 @@ class MyApplication : Application() {
                     databaseModule,
                     cacheModule,
                     domainModule,
+                    splashModule
                 )
             )
         }

@@ -1,6 +1,7 @@
 package com.raihan.simpleplayer.cache
 
 import com.raihan.simpleplayer.domain.ContentModel
+import com.raihan.simpleplayer.domain.SaveContentUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -10,8 +11,8 @@ import kotlinx.coroutines.flow.flow
  */
 class SaveContentLocalUseCase(
     private val store: ContentStore
-) {
-    fun save(model: List<ContentModel>): Flow<Exception?> = flow {
+): SaveContentUseCase {
+    override fun save(model: List<ContentModel>): Flow<Exception?> = flow {
         if (!store.isExists()) {
             store.insert(model.map { it.toLocalContentModel() }).collect { exception ->
                 if (exception != null) {

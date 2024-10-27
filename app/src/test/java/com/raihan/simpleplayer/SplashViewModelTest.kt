@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import app.cash.turbine.test
 import com.raihan.simpleplayer.cache.SaveContentLocalUseCase
 import com.raihan.simpleplayer.domain.ContentModel
+import com.raihan.simpleplayer.domain.SaveContentUseCase
+import com.raihan.simpleplayer.ui.splash.SplashViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.confirmVerified
 import io.mockk.every

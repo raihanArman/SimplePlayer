@@ -142,4 +142,23 @@ class ContentLocalStoreTest {
 
         confirmVerified(dao)
     }
+
+    @Test
+    fun testInsertSuccess() = runBlocking {
+        coEvery {
+            dao.insert(entity)
+        } returns Unit
+
+        sut.insert(localContent).test {
+            val result = awaitItem()
+            assertEquals(null, result)
+            awaitComplete()
+        }
+
+        coVerify {
+            dao.insert(entity)
+        }
+
+        confirmVerified(dao)
+    }
 }

@@ -2,8 +2,8 @@ package com.raihan.simpleplayer
 
 import app.cash.turbine.test
 import com.raihan.simpleplayer.domain.SaveContentUseCase
+import com.raihan.simpleplayer.presentation.splash.SplashEvent
 import com.raihan.simpleplayer.presentation.splash.SplashViewModel
-import com.raihan.simpleplayer.presentation.splash.UIEvent
 import com.raihan.simpleplayer.utils.content
 import io.mockk.MockKAnnotations
 import io.mockk.confirmVerified
@@ -55,7 +55,7 @@ class SplashViewModelTest {
             useCase.save(content)
         } returns flowOf(exception)
 
-        sut.onEvent(UIEvent.SaveContent)
+        sut.onEvent(SplashEvent.SaveContent)
 
         sut.uiState.take(1).test {
             val result = awaitItem()
@@ -79,7 +79,7 @@ class SplashViewModelTest {
             useCase.save(content)
         } returns flowOf(null)
 
-        sut.onEvent(UIEvent.SaveContent)
+        sut.onEvent(SplashEvent.SaveContent)
 
         sut.uiState.take(1).test {
             val result = awaitItem()

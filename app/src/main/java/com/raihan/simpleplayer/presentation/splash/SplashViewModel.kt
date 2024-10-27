@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 class SplashViewModel(
     private val useCase: SaveContentUseCase
 ): ViewModel() {
-    private val _uiState: MutableStateFlow<UIState> = MutableStateFlow(UIState())
+    private val _uiState: MutableStateFlow<SplashState> = MutableStateFlow(SplashState())
     val uiState = _uiState.asStateFlow()
 
     private fun save() {
@@ -40,21 +40,21 @@ class SplashViewModel(
         }
     }
 
-    fun onEvent(event: UIEvent) {
+    fun onEvent(event: SplashEvent) {
         when(event) {
-            is UIEvent.SaveContent -> {
+            is SplashEvent.SaveContent -> {
                 save()
             }
         }
     }
 }
 
-data class UIState(
+data class SplashState(
     val isSuccessful: Boolean = false,
     val error: Exception? = null,
     val isLoading: Boolean? = false
 )
 
-sealed interface UIEvent {
-    data object SaveContent: UIEvent
+sealed interface SplashEvent {
+    data object SaveContent: SplashEvent
 }

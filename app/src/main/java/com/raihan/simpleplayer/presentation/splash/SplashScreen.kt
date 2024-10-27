@@ -22,7 +22,7 @@ fun SplashScreen() {
     val state by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.onEvent(UIEvent.SaveContent)
+        viewModel.onEvent(SplashEvent.SaveContent)
     }
 
     LaunchedEffect(state.isSuccessful) {

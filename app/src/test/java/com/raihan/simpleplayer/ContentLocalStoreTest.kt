@@ -12,6 +12,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
@@ -44,10 +45,26 @@ class ContentLocalStore(
             emit(RetrieveCachedResult.Empty)
         }
     }
-    fun insert(data: List<LocalContentModel>): Flow<insertResult> = flow {  }
+    fun insert(data: List<LocalContentModel>): Flow<insertResult> = flow {
+        try {
+            dao.insert(data.map { it.toEntityModel() })
+            emit(null)
+        } catch (e: Exception) {
+            emit(e)
+        }
+    }
+
     fun isExists(): Boolean = false
 
     private fun LocalContentEntity.toLocalContentModel() = LocalContentModel(
+        id = id,
+        title = title,
+        description = description,
+        videoUrl = videoUrl,
+        adsUrl = adsUrl
+    )
+
+    private fun LocalContentModel.toEntityModel() = LocalContentEntity(
         id = id,
         title = title,
         description = description,
@@ -100,6 +117,27 @@ class ContentLocalStoreTest {
 
         coVerify {
             dao.load()
+        }
+
+        confirmVerified(dao)
+    }
+
+    @Test
+    fun testInsertFailed() = runBlocking {
+        val exception = Exception()
+
+        coEvery {
+            dao.insert(entity)
+        } throws exception
+
+        sut.insert(localContent).test {
+            val result = awaitItem()
+            assertEquals(exception::class.java, result!!::class.java)
+            awaitComplete()
+        }
+
+        coVerify {
+            dao.insert(entity)
         }
 
         confirmVerified(dao)

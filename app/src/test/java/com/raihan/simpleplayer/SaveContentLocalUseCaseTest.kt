@@ -34,6 +34,8 @@ class SaveContentLocalUseCase(
                     emit(null)
                 }
             }
+        } else {
+            emit(null)
         }
     }
 
@@ -75,10 +77,21 @@ class SaveContentLocalUseCaseTest {
         )
     }
 
+    @Test
+    fun testInsertWithCacheExists() {
+        expect(
+            sut = sut,
+            isExists = true,
+            expected = null,
+            insertVerify = 0
+        )
+    }
+
     private fun expect(
         sut: SaveContentLocalUseCase,
         isExists: Boolean,
         expected: insertResult,
+        insertVerify: Int = 1
     ) = runBlocking {
         every {
             store.isExists()
@@ -103,7 +116,7 @@ class SaveContentLocalUseCaseTest {
             store.isExists()
         }
 
-        verify(exactly = 1) {
+        verify(exactly = insertVerify) {
             store.insert(localContent)
         }
 

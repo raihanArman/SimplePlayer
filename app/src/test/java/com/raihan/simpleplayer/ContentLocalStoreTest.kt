@@ -20,62 +20,6 @@ import org.junit.Test
  * @author Raihan Arman
  * @date 27/10/24
  */
-data class LocalContentEntity(
-    val id: Int,
-    val title: String,
-    val description: String,
-    val videoUrl: String,
-    val adsUrl: String
-)
-
-interface ContentDao {
-    suspend fun load(): List<LocalContentEntity>
-    suspend fun insert(data: List<LocalContentEntity>)
-    suspend fun isTableNotEmpty(): Boolean
-}
-
-class ContentLocalStore(
-    private val dao: ContentDao
-) {
-    fun retrieve(): Flow<RetrievalResult> = flow {
-        val data = dao.load()
-        if (data.isNotEmpty()) {
-            emit(RetrieveCachedResult.Found(data.map { it.toLocalContentModel() }))
-        } else {
-            emit(RetrieveCachedResult.Empty)
-        }
-    }
-    fun insert(data: List<LocalContentModel>): Flow<insertResult> = flow {
-        try {
-            dao.insert(data.map { it.toEntityModel() })
-            emit(null)
-        } catch (e: Exception) {
-            emit(e)
-        }
-    }
-
-    fun isExists(): Flow<Boolean> = flow {
-        val isNotEmpty = dao.isTableNotEmpty()
-        emit(isNotEmpty)
-    }
-
-    private fun LocalContentEntity.toLocalContentModel() = LocalContentModel(
-        id = id,
-        title = title,
-        description = description,
-        videoUrl = videoUrl,
-        adsUrl = adsUrl
-    )
-
-    private fun LocalContentModel.toEntityModel() = LocalContentEntity(
-        id = id,
-        title = title,
-        description = description,
-        videoUrl = videoUrl,
-        adsUrl = adsUrl
-    )
-}
-
 class ContentLocalStoreTest {
     private val dao: ContentDao = mockk()
     private lateinit var sut: ContentLocalStore

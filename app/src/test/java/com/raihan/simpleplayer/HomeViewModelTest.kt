@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import app.cash.turbine.test
 import com.raihan.simpleplayer.cache.LoadContentLocalUseCase
 import com.raihan.simpleplayer.domain.ContentModel
+import com.raihan.simpleplayer.presentation.home.HomeEvent
+import com.raihan.simpleplayer.presentation.home.HomeViewModel
 import com.raihan.simpleplayer.utils.LoadCacheResult
 import com.raihan.simpleplayer.utils.LoadResult
 import com.raihan.simpleplayer.utils.content
@@ -32,51 +34,6 @@ import org.junit.Test
  * @author Raihan Arman
  * @date 27/10/24
  */
-
-class HomeViewModel(
-    private val useCase: LoadContentLocalUseCase
-): ViewModel() {
-    private val _uiState: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
-    val uiState = _uiState.asStateFlow()
-
-    private fun load() {
-        viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true) }
-            useCase.load().collect { result ->
-                when(result) {
-                    is LoadCacheResult.Success -> {
-                        _uiState.update { it.copy(isLoading = false, data = result.data) }
-                    }
-
-                    is LoadCacheResult.Failure -> {
-                        _uiState.update { it.copy(isLoading = false, error = result.exception) }
-                    }
-                }
-            }
-        }
-    }
-
-    fun onEvent(event: HomeEvent) {
-        when(event) {
-            is HomeEvent.LoadContent -> {
-                load()
-            }
-        }
-    }
-
-}
-
-data class HomeState(
-    val isLoading: Boolean = false,
-    val data: List<ContentModel>? = null,
-    val error: Exception? = null
-)
-
-sealed interface HomeEvent {
-    data object LoadContent: HomeEvent
-}
-
-
 class HomeViewModelTest {
     private val useCase: LoadContentLocalUseCase = mockk()
     private lateinit var sut: HomeViewModel

@@ -31,47 +31,6 @@ import org.junit.Test
  * @author Raihan Arman
  * @date 27/10/24
  */
-interface SaveContentUseCase {
-    fun save(model: List<ContentModel>): Flow<Exception?>
-}
-
-class SplashViewModel(
-    private val useCase: SaveContentUseCase
-): ViewModel() {
-    private val _uiState: MutableStateFlow<UIState> = MutableStateFlow(UIState())
-    val uiState = _uiState.asStateFlow()
-
-    fun save() {
-        val data = content
-        viewModelScope.launch {
-            _uiState.update {
-                it.copy(isLoading = true)
-            }
-            useCase.save(data).collect { exception ->
-                if (exception == null) {
-                    _uiState.update {
-                        it.copy(isLoading = false, isSuccessful = true)
-                    }
-                } else {
-                    _uiState.update {
-                        it.copy(isLoading = false, isSuccessful = false, error = exception)
-                    }
-                }
-            }
-        }
-    }
-}
-
-data class UIState(
-    val isSuccessful: Boolean = false,
-    val error: Exception? = null,
-    val isLoading: Boolean? = false
-)
-
-sealed interface UIEvent {
-    data object SaveContent: UIEvent
-}
-
 class SplashViewModelTest {
     private val useCase: SaveContentUseCase = mockk()
     private lateinit var sut: SplashViewModel
@@ -118,4 +77,29 @@ class SplashViewModelTest {
 
         confirmVerified(useCase)
     }
+
+    @Test
+    fun testSaveContentOnSuccess() = runBlocking {
+        every {
+            useCase.save(content)
+        } returns flowOf(null)
+
+        sut.save()
+
+        sut.uiState.take(1).test {
+            val result = awaitItem()
+            assertEquals(false, result.isLoading)
+            assertEquals(null, result.error)
+            assertEquals(true, result.isSuccessful)
+
+            awaitComplete()
+        }
+
+        verify(exactly = 1) {
+            useCase.save(content)
+        }
+
+        confirmVerified(useCase)
+    }
+
 }

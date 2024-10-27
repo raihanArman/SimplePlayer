@@ -1,4 +1,4 @@
-package com.raihan.simpleplayer.ui.splash
+package com.raihan.simpleplayer.presentation.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

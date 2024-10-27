@@ -2,8 +2,8 @@ package com.raihan.simpleplayer
 
 import app.cash.turbine.test
 import com.raihan.simpleplayer.domain.SaveContentUseCase
-import com.raihan.simpleplayer.ui.splash.SplashViewModel
-import com.raihan.simpleplayer.ui.splash.UIEvent
+import com.raihan.simpleplayer.presentation.splash.SplashViewModel
+import com.raihan.simpleplayer.presentation.splash.UIEvent
 import com.raihan.simpleplayer.utils.content
 import io.mockk.MockKAnnotations
 import io.mockk.confirmVerified

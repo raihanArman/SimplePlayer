@@ -56,48 +56,45 @@ class SaveContentLocalUseCaseTest {
     }
 
     @Test
-    fun testInsertErrorWithCacheDoesNotExists() = runBlocking {
+    fun testInsertErrorWithCacheDoesNotExists() {
         val exception = Exception()
 
-        every {
-            store.isExists()
-        } returns false
-
-        every {
-            store.insert(localContent)
-        } returns flowOf(exception)
-
-        sut.save(content).test {
-            val result = awaitItem()
-            assertEquals(exception::class.java, result!!::class.java)
-
-            awaitComplete()
-        }
-
-        verify(exactly = 1) {
-            store.isExists()
-        }
-
-        verify(exactly = 1) {
-            store.insert(localContent)
-        }
-
-        confirmVerified(store)
+        expect(
+            sut = sut,
+            isExists = false,
+            expected = exception,
+        )
     }
 
     @Test
-    fun testInsertSuccessWithCacheDoesNotExists() = runBlocking {
+    fun testInsertSuccessWithCacheDoesNotExists() {
+        expect(
+            sut = sut,
+            isExists = false,
+            expected = null,
+        )
+    }
+
+    private fun expect(
+        sut: SaveContentLocalUseCase,
+        isExists: Boolean,
+        expected: insertResult,
+    ) = runBlocking {
         every {
             store.isExists()
-        } returns false
+        } returns isExists
 
         every {
             store.insert(localContent)
-        } returns flowOf(null)
+        } returns flowOf(expected)
 
         sut.save(content).test {
             val result = awaitItem()
-            assertEquals(null, result)
+            if (result == null) {
+                assertEquals(expected, result)
+            } else {
+                assertEquals(expected!!::class.java, result::class.java)
+            }
 
             awaitComplete()
         }

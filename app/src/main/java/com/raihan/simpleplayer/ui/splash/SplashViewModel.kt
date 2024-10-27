@@ -19,7 +19,7 @@ class SplashViewModel(
     private val _uiState: MutableStateFlow<UIState> = MutableStateFlow(UIState())
     val uiState = _uiState.asStateFlow()
 
-    fun save() {
+    private fun save() {
         val data = emptyList<ContentModel>()
         viewModelScope.launch {
             _uiState.update {
@@ -35,6 +35,14 @@ class SplashViewModel(
                         it.copy(isLoading = false, isSuccessful = false, error = exception)
                     }
                 }
+            }
+        }
+    }
+
+    fun onEvent(event: UIEvent) {
+        when(event) {
+            is UIEvent.SaveContent -> {
+                save()
             }
         }
     }

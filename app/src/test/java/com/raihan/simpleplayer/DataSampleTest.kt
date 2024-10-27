@@ -1,6 +1,7 @@
 package com.raihan.simpleplayer
 
 import com.raihan.simpleplayer.cache.LocalContentModel
+import com.raihan.simpleplayer.cache_infra.LocalContentEntity
 import com.raihan.simpleplayer.domain.ContentModel
 
 /**

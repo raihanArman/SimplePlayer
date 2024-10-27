@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import java.util.Date
@@ -41,8 +42,14 @@ class GetContentLocalUseCase(
     private val store: ContentStore
 ) {
     fun load(): Flow<LoadResult> = flow {
-        store.retrieve().collect {
-
+        store.retrieve().collect { result ->
+            when (result) {
+                RetrieveCachedResult.Empty -> {}
+                is RetrieveCachedResult.Failure -> {
+                    emit(LoadCacheResult.Failure(result.exception))
+                }
+                is RetrieveCachedResult.Found -> {}
+            }
         }
     }
 }
@@ -72,6 +79,30 @@ class GetContentLocalUseCaseTest {
         } returns flowOf()
 
         sut.load().test {
+            awaitComplete()
+        }
+
+        verify(exactly = 1) {
+            store.retrieve()
+        }
+
+        confirmVerified(store)
+    }
+
+    @Test
+    fun testLoadFailsOnRetrievalError() = runBlocking {
+        val retrievalError = Exception()
+
+        every {
+            store.retrieve()
+        } returns flowOf(RetrieveCachedResult.Failure(retrievalError))
+
+        sut.load().test {
+            val result = awaitItem()
+            if (result is LoadCacheResult.Failure) {
+                assertEquals(LoadCacheResult.Failure(retrievalError), result)
+            }
+
             awaitComplete()
         }
 

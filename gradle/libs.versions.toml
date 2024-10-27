@@ -15,6 +15,11 @@ coroutines = "1.8.0"
 mockkAndroid = "1.13.10"
 turbine = "1.1.0"
 
+# Room
+room = "2.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -41,9 +46,15 @@ mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockkAndroid" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 kotlin-test-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
+# Room Database
+room = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 

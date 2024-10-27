@@ -50,6 +50,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    implementation(libs.room)
+
     testImplementation(libs.mockk.android)
     testImplementation(libs.mockk.agent)
     testImplementation(libs.turbine)

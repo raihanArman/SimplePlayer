@@ -1,18 +1,15 @@
 package com.raihan.simpleplayer
 
 import app.cash.turbine.test
-import com.raihan.simpleplayer.cache.LocalContentModel
-import com.raihan.simpleplayer.cache.insertResult
 import com.raihan.simpleplayer.cache_infra.ContentDao
 import com.raihan.simpleplayer.cache_infra.ContentLocalStore
-import com.raihan.simpleplayer.utils.RetrievalResult
 import com.raihan.simpleplayer.utils.RetrieveCachedResult
+import com.raihan.simpleplayer.utils.entity
+import com.raihan.simpleplayer.utils.localContent
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
 import io.mockk.mockk
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before

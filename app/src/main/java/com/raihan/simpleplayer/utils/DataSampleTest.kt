@@ -1,4 +1,4 @@
-package com.raihan.simpleplayer
+package com.raihan.simpleplayer.utils
 
 import com.raihan.simpleplayer.cache.LocalContentModel
 import com.raihan.simpleplayer.cache_infra.LocalContentEntity

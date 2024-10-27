@@ -6,6 +6,8 @@ import com.raihan.simpleplayer.cache.LoadContentLocalUseCase
 import com.raihan.simpleplayer.utils.LoadCacheResult
 import com.raihan.simpleplayer.utils.LoadResult
 import com.raihan.simpleplayer.utils.RetrieveCachedResult
+import com.raihan.simpleplayer.utils.content
+import com.raihan.simpleplayer.utils.localContent
 import io.mockk.confirmVerified
 import io.mockk.every
 import io.mockk.mockk

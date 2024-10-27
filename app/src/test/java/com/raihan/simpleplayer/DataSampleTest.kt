@@ -26,3 +26,13 @@ val localContent = listOf(
         adsUrl = "adsUrl"
     )
 )
+
+val entity = listOf(
+    LocalContentEntity(
+        id = 1,
+        title = "title",
+        description = "description",
+        videoUrl = "videoUrl",
+        adsUrl = "adsUrl"
+    )
+)

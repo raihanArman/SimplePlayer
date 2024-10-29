@@ -59,6 +59,8 @@ dependencies {
     implementation(libs.bundles.koin.compose)
     implementation(libs.bundles.koin)
 
+    implementation(libs.coil)
+
     implementation(project(":shared_library:navigation"))
 
     testImplementation(libs.mockk.android)

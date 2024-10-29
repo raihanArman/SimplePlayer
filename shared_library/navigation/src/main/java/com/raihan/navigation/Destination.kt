@@ -17,6 +17,17 @@ sealed class Destination(protected val route: String, vararg params: String) {
 
     data object SplashScreen : NoArgumentsDestination("Splash")
     data object HomeScreen : NoArgumentsDestination("home")
+    data object PlayerScreen : NoArgumentsDestination("player",
+//        *arrayOf("content_model")
+    ) {
+        const val CONTENT_MODEL_KEY = "content_model"
+
+        operator fun invoke(
+            contentModelJson: String)
+        : String = route.appendParams(
+//            CONTENT_MODEL_KEY to contentModelJson
+        )
+    }
 }
 
 internal fun String.appendParams(vararg params: Pair<String, Any?>): String {

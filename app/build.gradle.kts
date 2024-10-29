@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.bundles.koin)
 
     implementation(libs.coil)
+    implementation(libs.gson)
 
     implementation(project(":shared_library:navigation"))
 

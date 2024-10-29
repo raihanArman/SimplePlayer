@@ -13,6 +13,7 @@ compose-ui = "1.7.4"
 constraintlayout-compose = "1.0.1"
 compose-material3 = "1.3.0"
 compose-navigation = "2.8.3"
+gson = "2.8.8"
 
 # Asynchronous
 coroutines = "1.8.0"
@@ -90,6 +91,9 @@ koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = 
 
 # Coil
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+
+# Gson
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 
 [bundles]
 koin_compose = [

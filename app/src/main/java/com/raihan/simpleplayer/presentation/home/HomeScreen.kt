@@ -1,6 +1,7 @@
 package com.raihan.simpleplayer.presentation.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,8 +31,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraphBuilder
 import com.raihan.navigation.Destination
+import com.raihan.navigation.LocalNavigationComponent
 import org.koin.androidx.compose.getViewModel
 import com.raihan.navigation.composable
+import com.raihan.simpleplayer.presentation.player.mapToPlayerModel
+import com.raihan.simpleplayer.presentation.player.toJson
 import com.raihan.simpleplayer.presentation.splash.SplashEvent
 import com.raihan.simpleplayer.utils.BaseImageView
 
@@ -50,8 +54,9 @@ fun HomeScreen() {
     val viewModel: HomeViewModel = getViewModel()
     val state by viewModel.uiState.collectAsState()
 
+    val navigator = LocalNavigationComponent.current
+
     LaunchedEffect(Unit) {
-        println("Ampas kuda -> hit")
         viewModel.onEvent(HomeEvent.LoadContent)
     }
 
@@ -77,7 +82,11 @@ fun HomeScreen() {
                     ItemContent(
                         title = it.title,
                         thumbUrl = it.thumbUrl
-                    ) { }
+                    ) {
+                        navigator.tryNavigateTo(
+                            Destination.PlayerScreen()
+                        )
+                    }
                 }
             }
         }
@@ -94,7 +103,10 @@ fun ItemContent(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(300.dp),
+            .height(300.dp)
+            .clickable {
+                onClick()
+            },
     ) {
         Box(
             modifier = Modifier

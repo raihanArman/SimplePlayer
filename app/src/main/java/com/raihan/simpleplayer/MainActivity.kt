@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(innerPadding)
                     ) {
-                        SplashScreen()
+                        MainScreen()
                     }
                 }
             }

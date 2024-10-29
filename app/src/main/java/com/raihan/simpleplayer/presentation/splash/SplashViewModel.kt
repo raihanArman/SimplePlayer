@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.raihan.simpleplayer.domain.ContentModel
 import com.raihan.simpleplayer.domain.SaveContentUseCase
 import com.raihan.simpleplayer.utils.content
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -26,6 +27,7 @@ class SplashViewModel(
             _uiState.update {
                 it.copy(isLoading = true)
             }
+            delay(1000L)
             useCase.save(data).collect { exception ->
                 if (exception == null) {
                     _uiState.update {

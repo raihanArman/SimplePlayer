@@ -1,6 +1,7 @@
 package com.raihan.simpleplayer.cache
 
 import com.raihan.simpleplayer.domain.ContentModel
+import com.raihan.simpleplayer.domain.LoadContentUseCase
 import com.raihan.simpleplayer.utils.LoadCacheResult
 import com.raihan.simpleplayer.utils.LoadResult
 import com.raihan.simpleplayer.utils.RetrieveCachedResult
@@ -13,8 +14,8 @@ import kotlinx.coroutines.flow.flow
  */
 class LoadContentLocalUseCase(
     private val store: ContentStore
-) {
-    fun load(): Flow<LoadResult> = flow {
+): LoadContentUseCase {
+    override fun load(): Flow<LoadResult> = flow {
         store.retrieve().collect { result ->
             when (result) {
                 RetrieveCachedResult.Empty -> {

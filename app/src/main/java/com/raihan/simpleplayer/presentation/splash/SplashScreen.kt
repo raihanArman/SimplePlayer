@@ -10,24 +10,39 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavGraphBuilder
+import com.raihan.navigation.Destination
+import com.raihan.navigation.LocalNavigationComponent
 import org.koin.androidx.compose.getViewModel
+import com.raihan.navigation.composable
 
 /**
  * @author Raihan Arman
  * @date 27/10/24
  */
+fun NavGraphBuilder.splashNavigation() = run {
+    composable(Destination.SplashScreen) {
+        println("Ampas kuda -> splash regsi")
+        SplashScreen()
+    }
+}
+
 @Composable
 fun SplashScreen() {
     val viewModel: SplashViewModel = getViewModel()
     val state by viewModel.uiState.collectAsState()
+    val navigator = LocalNavigationComponent.current
 
     LaunchedEffect(Unit) {
+        println("Ampas kuda -> hit")
         viewModel.onEvent(SplashEvent.SaveContent)
     }
 
     LaunchedEffect(state.isSuccessful) {
         if (state.isSuccessful) {
             // Navigate to next screen
+            println("Ampas kuda -> go to home")
+            navigator.tryNavigateAndReplaceStartRoute(Destination.HomeScreen())
         }
     }
 

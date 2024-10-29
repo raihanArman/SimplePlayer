@@ -62,6 +62,10 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.gson)
 
+    implementation(libs.bundles.media3)
+    implementation("com.google.android.exoplayer:exoplayer:2.18.1")
+    implementation("com.google.android.exoplayer:exoplayer-ui:2.18.1")
+
     implementation(project(":shared_library:navigation"))
 
     testImplementation(libs.mockk.android)

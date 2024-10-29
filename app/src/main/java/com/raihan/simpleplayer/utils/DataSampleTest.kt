@@ -14,7 +14,8 @@ val content = listOf(
         title = "title",
         description = "description",
         videoUrl = "videoUrl",
-        adsUrl = "adsUrl"
+        adsUrl = "adsUrl",
+        thumbUrl = "thumbUrl"
     )
 )
 
@@ -24,7 +25,8 @@ val localContent = listOf(
         title = "title",
         description = "description",
         videoUrl = "videoUrl",
-        adsUrl = "adsUrl"
+        adsUrl = "adsUrl",
+        thumbUrl = "thumbUrl"
     )
 )
 
@@ -34,6 +36,7 @@ val entity = listOf(
         title = "title",
         description = "description",
         videoUrl = "videoUrl",
-        adsUrl = "adsUrl"
+        adsUrl = "adsUrl",
+        thumbUrl = "thumbUrl"
     )
 )

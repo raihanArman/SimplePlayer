@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.raihan.simpleplayer.domain.ContentModel
 import com.raihan.simpleplayer.domain.SaveContentUseCase
 import com.raihan.simpleplayer.utils.content
+import com.raihan.simpleplayer.utils.contentSample
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,7 +23,7 @@ class SplashViewModel(
     val uiState = _uiState.asStateFlow()
 
     private fun save() {
-        val data = content
+        val data = contentSample()
         viewModelScope.launch {
             _uiState.update {
                 it.copy(isLoading = true)

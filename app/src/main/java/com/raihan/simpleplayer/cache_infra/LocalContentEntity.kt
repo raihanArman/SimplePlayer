@@ -13,5 +13,6 @@ data class LocalContentEntity(
     val title: String,
     val description: String,
     val videoUrl: String,
-    val adsUrl: String
+    val adsUrl: String,
+    val thumbUrl: String,
 )

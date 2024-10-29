@@ -34,6 +34,7 @@ class SaveContentLocalUseCase(
         title = title,
         description = description,
         videoUrl = videoUrl,
-        adsUrl = adsUrl
+        adsUrl = adsUrl,
+        thumbUrl = thumbUrl,
     )
 }

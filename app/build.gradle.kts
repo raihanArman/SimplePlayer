@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
 }
 
@@ -38,6 +37,9 @@ android {
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
+    }
 }
 
 dependencies {
@@ -56,6 +58,8 @@ dependencies {
 
     implementation(libs.bundles.koin.compose)
     implementation(libs.bundles.koin)
+
+    implementation(project(":shared_library:navigation"))
 
     testImplementation(libs.mockk.android)
     testImplementation(libs.mockk.agent)

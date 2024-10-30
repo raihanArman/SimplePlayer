@@ -1,9 +1,8 @@
 # Simple Player
 
 ## Description
-```
 Simple Player is an application designed to provide a seamless content-watching experience, allowing users to view a list of content, play videos.
-```
+
 
 ## Requirements
 ### The Requirement

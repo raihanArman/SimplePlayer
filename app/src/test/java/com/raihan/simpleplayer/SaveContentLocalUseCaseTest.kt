@@ -2,8 +2,8 @@ package com.raihan.simpleplayer
 
 import app.cash.turbine.test
 import com.raihan.simpleplayer.cache.store.ContentStore
+import com.raihan.simpleplayer.cache.store.insertResult
 import com.raihan.simpleplayer.cache.usecase.SaveContentLocalUseCase
-import com.raihan.simpleplayer.cache.insertResult
 import com.raihan.simpleplayer.utils.content
 import com.raihan.simpleplayer.utils.localContent
 import io.mockk.confirmVerified

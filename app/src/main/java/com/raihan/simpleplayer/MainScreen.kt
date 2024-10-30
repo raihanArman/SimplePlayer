@@ -16,7 +16,6 @@ import com.raihan.navigation.LocalNavigationComponent
 import com.raihan.navigation.NavHostApp
 import com.raihan.navigation.NavigationIntent
 import com.raihan.simpleplayer.presentation.home.homeNavigation
-import com.raihan.simpleplayer.presentation.player.playerNavigation
 import com.raihan.simpleplayer.presentation.splash.splashNavigation
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -47,7 +46,6 @@ fun MainScreen(modifier: Modifier = Modifier) {
         ) {
             splashNavigation()
             homeNavigation()
-            playerNavigation()
         }
     }
 }

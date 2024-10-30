@@ -1,5 +1,7 @@
 package com.raihan.simpleplayer.presentation.home
 
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -27,6 +29,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraphBuilder
@@ -34,6 +37,8 @@ import com.raihan.navigation.Destination
 import com.raihan.navigation.LocalNavigationComponent
 import org.koin.androidx.compose.getViewModel
 import com.raihan.navigation.composable
+import com.raihan.simpleplayer.domain.ContentModel
+import com.raihan.simpleplayer.presentation.player.PlayerActivity
 import com.raihan.simpleplayer.presentation.player.mapToPlayerModel
 import com.raihan.simpleplayer.presentation.player.toJson
 import com.raihan.simpleplayer.presentation.splash.SplashEvent
@@ -54,7 +59,7 @@ fun HomeScreen() {
     val viewModel: HomeViewModel = getViewModel()
     val state by viewModel.uiState.collectAsState()
 
-    val navigator = LocalNavigationComponent.current
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         viewModel.onEvent(HomeEvent.LoadContent)
@@ -83,15 +88,19 @@ fun HomeScreen() {
                         title = it.title,
                         thumbUrl = it.thumbUrl
                     ) {
-                        navigator.tryNavigateTo(
-                            Destination.PlayerScreen()
-                        )
+                        goToPlayer(context, it)
                     }
                 }
             }
         }
     }
 
+}
+
+fun goToPlayer(context: Context, it: ContentModel) {
+    val intent = Intent(context, PlayerActivity::class.java)
+    intent.putExtra(PlayerActivity.PLAYER_CONTENT_KEY, it.mapToPlayerModel().toJson())
+    context.startActivity(intent)
 }
 
 @Composable

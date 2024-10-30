@@ -27,6 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.player.PlayerActivity"
+            android:configChanges="orientation|screenSize|layoutDirection|keyboardHidden"
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -26,3 +26,17 @@ Simple Player is an application designed to provide a seamless content-watching 
 
 ## Low Level Architecture Design
 ![Low Level Design](low_level_design.png)
+
+
+## Technologies
+- Kotlin
+- Jetpack Compose
+- ExoPlayer
+- Room Database
+- Koin
+- Coroutines Flow
+
+## Architecture
+- Clean Architecture
+- MVVM-MVI Design Pattern
+- Test Driven Development (TDD)

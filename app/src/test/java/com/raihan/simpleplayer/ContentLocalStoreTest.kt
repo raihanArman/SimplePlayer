@@ -1,8 +1,8 @@
 package com.raihan.simpleplayer
 
 import app.cash.turbine.test
-import com.raihan.simpleplayer.cache_infra.ContentDao
-import com.raihan.simpleplayer.cache_infra.ContentLocalStore
+import com.raihan.simpleplayer.cache_infra.database.ContentDao
+import com.raihan.simpleplayer.cache_infra.store.ContentLocalStore
 import com.raihan.simpleplayer.utils.RetrieveCachedResult
 import com.raihan.simpleplayer.utils.entity
 import com.raihan.simpleplayer.utils.localContent

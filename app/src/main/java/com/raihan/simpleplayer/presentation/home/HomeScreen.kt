@@ -6,18 +6,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -34,14 +31,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraphBuilder
 import com.raihan.navigation.Destination
-import com.raihan.navigation.LocalNavigationComponent
 import org.koin.androidx.compose.getViewModel
 import com.raihan.navigation.composable
-import com.raihan.simpleplayer.domain.ContentModel
+import com.raihan.simpleplayer.domain.model.ContentModel
 import com.raihan.simpleplayer.presentation.player.PlayerActivity
 import com.raihan.simpleplayer.presentation.player.mapToPlayerModel
 import com.raihan.simpleplayer.presentation.player.toJson
-import com.raihan.simpleplayer.presentation.splash.SplashEvent
 import com.raihan.simpleplayer.utils.BaseImageView
 
 /**
@@ -116,6 +111,7 @@ fun ItemContent(
             .clickable {
                 onClick()
             },
+        shape = RoundedCornerShape(8.dp)
     ) {
         Box(
             modifier = Modifier

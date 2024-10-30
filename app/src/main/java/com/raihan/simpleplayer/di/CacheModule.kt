@@ -1,7 +1,7 @@
 package com.raihan.simpleplayer.di
 
-import com.raihan.simpleplayer.cache.ContentStore
-import com.raihan.simpleplayer.cache_infra.ContentLocalStore
+import com.raihan.simpleplayer.cache.store.ContentStore
+import com.raihan.simpleplayer.cache_infra.store.ContentLocalStore
 import org.koin.dsl.module
 
 /**

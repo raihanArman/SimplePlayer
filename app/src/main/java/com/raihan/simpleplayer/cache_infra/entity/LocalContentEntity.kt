@@ -1,4 +1,4 @@
-package com.raihan.simpleplayer.cache_infra
+package com.raihan.simpleplayer.cache_infra.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,4 +1,4 @@
-package com.raihan.simpleplayer
+package com.raihan.simpleplayer.presentation.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.raihan.simpleplayer.presentation.splash.SplashScreen
 import com.raihan.simpleplayer.ui.theme.SimplePlayerTheme
 
 class MainActivity : ComponentActivity() {

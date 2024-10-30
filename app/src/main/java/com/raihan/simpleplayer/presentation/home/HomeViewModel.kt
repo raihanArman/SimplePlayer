@@ -2,9 +2,8 @@ package com.raihan.simpleplayer.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.raihan.simpleplayer.cache.LoadContentLocalUseCase
-import com.raihan.simpleplayer.domain.ContentModel
-import com.raihan.simpleplayer.domain.LoadContentUseCase
+import com.raihan.simpleplayer.domain.model.ContentModel
+import com.raihan.simpleplayer.domain.usecase.LoadContentUseCase
 import com.raihan.simpleplayer.utils.LoadCacheResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

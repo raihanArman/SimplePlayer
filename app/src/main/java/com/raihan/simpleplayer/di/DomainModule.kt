@@ -1,9 +1,9 @@
 package com.raihan.simpleplayer.di
 
-import com.raihan.simpleplayer.cache.LoadContentLocalUseCase
-import com.raihan.simpleplayer.cache.SaveContentLocalUseCase
-import com.raihan.simpleplayer.domain.LoadContentUseCase
-import com.raihan.simpleplayer.domain.SaveContentUseCase
+import com.raihan.simpleplayer.cache.usecase.LoadContentLocalUseCase
+import com.raihan.simpleplayer.cache.usecase.SaveContentLocalUseCase
+import com.raihan.simpleplayer.domain.usecase.LoadContentUseCase
+import com.raihan.simpleplayer.domain.usecase.SaveContentUseCase
 import org.koin.dsl.module
 
 /**

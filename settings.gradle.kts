@@ -21,5 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "SimplePlayer"
 include(":app")
-include(":shared_library:database")
 include(":shared_library:navigation")

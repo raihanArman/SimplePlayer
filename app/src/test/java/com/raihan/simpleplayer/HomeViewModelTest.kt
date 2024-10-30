@@ -1,14 +1,10 @@
 package com.raihan.simpleplayer
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import app.cash.turbine.test
-import com.raihan.simpleplayer.cache.LoadContentLocalUseCase
-import com.raihan.simpleplayer.domain.ContentModel
+import com.raihan.simpleplayer.cache.usecase.LoadContentLocalUseCase
 import com.raihan.simpleplayer.presentation.home.HomeEvent
 import com.raihan.simpleplayer.presentation.home.HomeViewModel
 import com.raihan.simpleplayer.utils.LoadCacheResult
-import com.raihan.simpleplayer.utils.LoadResult
 import com.raihan.simpleplayer.utils.content
 import io.mockk.MockKAnnotations
 import io.mockk.confirmVerified
@@ -17,12 +13,8 @@ import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.take
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.setMain

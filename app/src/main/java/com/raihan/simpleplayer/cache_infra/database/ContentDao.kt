@@ -1,9 +1,10 @@
-package com.raihan.simpleplayer.cache_infra
+package com.raihan.simpleplayer.cache_infra.database
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.raihan.simpleplayer.cache_infra.entity.LocalContentEntity
 
 /**
  * @author Raihan Arman

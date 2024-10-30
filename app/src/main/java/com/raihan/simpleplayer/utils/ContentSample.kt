@@ -1,6 +1,6 @@
 package com.raihan.simpleplayer.utils
 
-import com.raihan.simpleplayer.domain.ContentModel
+import com.raihan.simpleplayer.domain.model.ContentModel
 
 /**
  * @author Raihan Arman
@@ -13,7 +13,7 @@ fun contentSample() = listOf(
         description = "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself. When one sunny day three rodents rudely harass him, something snaps... and the rabbit ain't no bunny anymore!",
         videoUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
         adsUrl = "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
-        thumbUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"
+        thumbUrl = "https://image.tmdb.org/t/p/w1280/i9jJzvoXET4D9pOkoEwncSdNNER.jpg"
     ),
     ContentModel(
         id = 2,
@@ -21,7 +21,7 @@ fun contentSample() = listOf(
         description = "The first Blender Open Movie from 2006.",
         videoUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
         adsUrl = "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
-        thumbUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg"
+        thumbUrl = "https://image.tmdb.org/t/p/w1280/ekEKmy1lDzBQ7WiWOXBCbDxF2bN.jpg"
     ),
     ContentModel(
         id = 3,
@@ -61,7 +61,7 @@ fun contentSample() = listOf(
         description = "Sintel is an independently produced short film, initiated by the Blender Foundation.",
         videoUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
         adsUrl = "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=",
-        thumbUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg"
+        thumbUrl = "https://image.tmdb.org/t/p/w1280/4BMG9hk9NvSBeQvC82sVmVRK140.jpg"
     ),
     ContentModel(
         id = 8,

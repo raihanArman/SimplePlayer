@@ -1,10 +1,10 @@
-package com.raihan.simpleplayer.cache
+package com.raihan.simpleplayer.domain.model
 
 /**
  * @author Raihan Arman
  * @date 27/10/24
  */
-data class LocalContentModel(
+data class ContentModel(
     val id: Int,
     val title: String,
     val description: String,

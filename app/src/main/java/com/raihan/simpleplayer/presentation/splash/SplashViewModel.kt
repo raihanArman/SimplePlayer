@@ -2,9 +2,7 @@ package com.raihan.simpleplayer.presentation.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.raihan.simpleplayer.domain.ContentModel
-import com.raihan.simpleplayer.domain.SaveContentUseCase
-import com.raihan.simpleplayer.utils.content
+import com.raihan.simpleplayer.domain.usecase.SaveContentUseCase
 import com.raihan.simpleplayer.utils.contentSample
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow

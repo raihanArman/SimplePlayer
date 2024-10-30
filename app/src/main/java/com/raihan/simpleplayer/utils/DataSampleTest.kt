@@ -1,8 +1,8 @@
 package com.raihan.simpleplayer.utils
 
-import com.raihan.simpleplayer.cache.LocalContentModel
-import com.raihan.simpleplayer.cache_infra.LocalContentEntity
-import com.raihan.simpleplayer.domain.ContentModel
+import com.raihan.simpleplayer.cache.model.LocalContentModel
+import com.raihan.simpleplayer.cache_infra.entity.LocalContentEntity
+import com.raihan.simpleplayer.domain.model.ContentModel
 
 /**
  * @author Raihan Arman

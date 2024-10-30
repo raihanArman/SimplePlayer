@@ -1,7 +1,9 @@
-package com.raihan.simpleplayer.cache
+package com.raihan.simpleplayer.cache.usecase
 
-import com.raihan.simpleplayer.domain.ContentModel
-import com.raihan.simpleplayer.domain.LoadContentUseCase
+import com.raihan.simpleplayer.cache.model.LocalContentModel
+import com.raihan.simpleplayer.cache.store.ContentStore
+import com.raihan.simpleplayer.domain.model.ContentModel
+import com.raihan.simpleplayer.domain.usecase.LoadContentUseCase
 import com.raihan.simpleplayer.utils.LoadCacheResult
 import com.raihan.simpleplayer.utils.LoadResult
 import com.raihan.simpleplayer.utils.RetrieveCachedResult

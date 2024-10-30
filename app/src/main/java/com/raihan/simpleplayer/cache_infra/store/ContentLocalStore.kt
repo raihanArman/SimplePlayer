@@ -1,8 +1,10 @@
-package com.raihan.simpleplayer.cache_infra
+package com.raihan.simpleplayer.cache_infra.store
 
-import com.raihan.simpleplayer.cache.ContentStore
-import com.raihan.simpleplayer.cache.LocalContentModel
+import com.raihan.simpleplayer.cache.store.ContentStore
+import com.raihan.simpleplayer.cache.model.LocalContentModel
 import com.raihan.simpleplayer.cache.insertResult
+import com.raihan.simpleplayer.cache_infra.entity.LocalContentEntity
+import com.raihan.simpleplayer.cache_infra.database.ContentDao
 import com.raihan.simpleplayer.utils.RetrievalResult
 import com.raihan.simpleplayer.utils.RetrieveCachedResult
 import kotlinx.coroutines.flow.Flow

@@ -1,7 +1,7 @@
 package com.raihan.simpleplayer
 
 import app.cash.turbine.test
-import com.raihan.simpleplayer.domain.SaveContentUseCase
+import com.raihan.simpleplayer.domain.usecase.SaveContentUseCase
 import com.raihan.simpleplayer.presentation.splash.SplashEvent
 import com.raihan.simpleplayer.presentation.splash.SplashViewModel
 import com.raihan.simpleplayer.utils.content

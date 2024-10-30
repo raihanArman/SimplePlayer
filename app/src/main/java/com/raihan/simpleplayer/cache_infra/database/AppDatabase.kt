@@ -1,7 +1,8 @@
-package com.raihan.simpleplayer.cache_infra
+package com.raihan.simpleplayer.cache_infra.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.raihan.simpleplayer.cache_infra.entity.LocalContentEntity
 
 /**
  * @author Raihan Arman

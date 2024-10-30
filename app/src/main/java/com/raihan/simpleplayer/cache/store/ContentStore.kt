@@ -1,5 +1,6 @@
-package com.raihan.simpleplayer.cache
+package com.raihan.simpleplayer.cache.store
 
+import com.raihan.simpleplayer.cache.model.LocalContentModel
 import com.raihan.simpleplayer.utils.RetrievalResult
 import kotlinx.coroutines.flow.Flow
 

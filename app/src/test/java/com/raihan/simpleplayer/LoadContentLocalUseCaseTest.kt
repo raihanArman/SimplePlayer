@@ -1,8 +1,8 @@
 package com.raihan.simpleplayer
 
 import app.cash.turbine.test
-import com.raihan.simpleplayer.cache.ContentStore
-import com.raihan.simpleplayer.cache.LoadContentLocalUseCase
+import com.raihan.simpleplayer.cache.store.ContentStore
+import com.raihan.simpleplayer.cache.usecase.LoadContentLocalUseCase
 import com.raihan.simpleplayer.utils.LoadCacheResult
 import com.raihan.simpleplayer.utils.LoadResult
 import com.raihan.simpleplayer.utils.RetrieveCachedResult

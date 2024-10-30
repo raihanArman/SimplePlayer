@@ -1,5 +1,6 @@
-package com.raihan.simpleplayer.domain
+package com.raihan.simpleplayer.domain.usecase
 
+import com.raihan.simpleplayer.domain.model.ContentModel
 import kotlinx.coroutines.flow.Flow
 
 /**

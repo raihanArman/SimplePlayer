@@ -1,6 +1,6 @@
 package com.raihan.simpleplayer.utils
 
-import com.raihan.simpleplayer.cache.LocalContentModel
+import com.raihan.simpleplayer.cache.model.LocalContentModel
 
 /**
  * @author Raihan Arman

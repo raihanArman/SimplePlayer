@@ -1,7 +1,7 @@
 package com.raihan.simpleplayer.presentation.player
 
 import com.google.gson.Gson
-import com.raihan.simpleplayer.domain.ContentModel
+import com.raihan.simpleplayer.domain.model.ContentModel
 
 /**
  * @author Raihan Arman

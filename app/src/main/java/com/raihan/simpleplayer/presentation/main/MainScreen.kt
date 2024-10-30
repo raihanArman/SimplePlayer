@@ -1,4 +1,4 @@
-package com.raihan.simpleplayer
+package com.raihan.simpleplayer.presentation.main
 
 import android.app.Activity
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -19,8 +19,6 @@ import com.raihan.simpleplayer.presentation.home.homeNavigation
 import com.raihan.simpleplayer.presentation.splash.splashNavigation
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
-import org.koin.compose.koinInject
-import org.koin.compose.rememberKoinInject
 
 /**
  * @author Raihan Arman

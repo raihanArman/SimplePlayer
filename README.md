@@ -13,9 +13,8 @@ Simple Player is an application designed to provide a seamless content-watching 
 - Player Content
 
 ## Functional Requirements
-- Show List Content from local
 - Save content to local first
-- Save content while watching like current position of video to continue watching
+- Show List Content from local
 - Play content in details
 
 ## Non Functional Requirements

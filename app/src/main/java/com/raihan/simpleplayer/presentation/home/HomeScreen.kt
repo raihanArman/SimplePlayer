@@ -107,7 +107,7 @@ fun ItemContent(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(300.dp)
+            .height(230.dp)
             .clickable {
                 onClick()
             },
@@ -126,8 +126,8 @@ fun ItemContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .background(color = Color.Black.copy(alpha = 0.5f))
-                    .padding(5.dp),
+                    .background(color = Color.Black.copy(alpha = 0.7f))
+                    .padding(8.dp),
             ) {
                 Text(
                     title,

@@ -2,6 +2,7 @@ package com.raihan.simpleplayer.utils
 
 import android.os.Build.VERSION.SDK_INT
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
@@ -11,6 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -53,8 +55,8 @@ fun BaseImageView(
             if (state is AsyncImagePainter.State.Success) {
                 Image(
                     painter = this.painter, contentDescription = "",
-                    modifier = modifier,
-                    contentScale = contentScale ?: ContentScale.Fit,
+                    modifier = modifier.background(color = Color.Black),
+                    contentScale = contentScale ?: ContentScale.FillWidth,
                 )
             }
         },

@@ -3,6 +3,7 @@ package com.raihan.simpleplayer.presentation.splash
 import android.window.SplashScreen
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,7 +23,6 @@ import com.raihan.navigation.composable
  */
 fun NavGraphBuilder.splashNavigation() = run {
     composable(Destination.SplashScreen) {
-        println("Ampas kuda -> splash regsi")
         SplashScreen()
     }
 }
@@ -34,14 +34,11 @@ fun SplashScreen() {
     val navigator = LocalNavigationComponent.current
 
     LaunchedEffect(Unit) {
-        println("Ampas kuda -> hit")
         viewModel.onEvent(SplashEvent.SaveContent)
     }
 
     LaunchedEffect(state.isSuccessful) {
         if (state.isSuccessful) {
-            // Navigate to next screen
-            println("Ampas kuda -> go to home")
             navigator.tryNavigateAndReplaceStartRoute(Destination.HomeScreen())
         }
     }
@@ -51,6 +48,6 @@ fun SplashScreen() {
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text("Splash Screen")
+        CircularProgressIndicator()
     }
 }

@@ -24,7 +24,7 @@ class PlayerActivity: ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.onSecondaryContainer
                 ) {
-                    val playerModelIntent = intent.getStringExtra("PLAYER_CONTENT_KEY")
+                    val playerModelIntent = intent.getStringExtra(PLAYER_CONTENT_KEY)
                     playerModelIntent?.let {
                         val playerModel = it.fromJsonToPlayerModel()
                         PlayerScreen(this, playerModel)

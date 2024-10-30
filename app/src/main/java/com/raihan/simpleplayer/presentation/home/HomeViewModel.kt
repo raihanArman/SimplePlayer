@@ -24,7 +24,6 @@ class HomeViewModel(
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
             useCase.load().collect { result ->
-                println("Ampas kuda -> $result")
                 when(result) {
                     is LoadCacheResult.Success -> {
                         _uiState.update { it.copy(isLoading = false, data = result.data) }
